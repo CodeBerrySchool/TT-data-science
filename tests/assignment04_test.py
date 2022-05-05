@@ -1,9 +1,25 @@
 import file_handler
 import data_conversion
+from testfixtures import compare
 
-# test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
-# print(data_conversion.get_sales_keys(test_video_game_sales))
-# print(data_conversion.modify_sales_numbers(test_video_game_sales))
+def test_has_method():
+    assert hasattr(file_handler, 'get_dicts_from_csv')
+
+def test_converter_has_get_method():
+    assert hasattr(data_conversion, 'get_sales_keys')
+
+def test_converter_has_modify_method():
+    assert hasattr(data_conversion, 'modify_sales_numbers')
+
+def test_get_dict_keys():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_keys = data_conversion.get_sales_keys(test_video_game_sales)
+    compare(test_keys, result1)
+
+def test_modify_sales_numbers():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_modified = data_conversion.modify_sales_numbers(test_video_game_sales)
+    compare(test_modified, result2)
 
 result1 = ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"]
 result2 = [{

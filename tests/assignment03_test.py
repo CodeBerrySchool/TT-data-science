@@ -1,10 +1,18 @@
 import file_handler
+from testfixtures import compare
 
-def test_answer():
+def test_has_method():
+    assert hasattr(file_handler, 'get_dicts_from_csv')
+
+def test_read_csv():
     test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
-    assert test_video_game_sales == result
+    compare(test_video_game_sales, result)
 
-# print(file_handler.write_dicts_to_csv('test_sales.csv', test_video_game_sales))
+def test_write_csv():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_sales_result = file_handler.write_dicts_to_csv(
+        'test_sales.csv', test_video_game_sales)
+    assert test_sales_result == "Fájl létrehozva!"
 
 result = ({
     "Rank": "1",

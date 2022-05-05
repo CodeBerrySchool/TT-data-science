@@ -1,11 +1,13 @@
 import data_conversion
 import file_handler
 import platform_sales
+from testfixtures import compare
 
-# test_video_game_sales = data_conversion.modify_sales(
-#     file_handler.get_dicts_from_csv('vg_sales.csv')[:3])
-# print(platform_sales.create_platform_sales(platform_sales.get_gamesales_by_platforms(
-#     test_video_game_sales), data_conversion.get_sales_keys(test_video_game_sales)))
+def test_get_dict_keys():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_platform_sales = platform_sales.create_platform_sales(platform_sales.get_gamesales_by_platforms(
+        test_video_game_sales), data_conversion.get_sales_keys(test_video_game_sales))
+    compare(test_platform_sales, result)
 
 result = [{
     'Platform': 'NES',

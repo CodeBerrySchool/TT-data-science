@@ -1,9 +1,17 @@
 import file_handler
 import platform_sales
+from testfixtures import compare
 
-# test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
-# print(platform_sales.get_all_platforms(test_video_game_sales))
-# print(platform_sales.get_gamesales_by_platform(test_video_game_sales))
+def test_get_platforms():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_platforms = platform_sales.get_all_platforms(test_video_game_sales)
+    compare(test_platforms, result1)
+
+def test_get_platform_sales():
+    test_video_game_sales = file_handler.get_dicts_from_csv('vg_sales.csv')[:3]
+    test_platform_sales = platform_sales.get_gamesales_by_platform(
+        test_video_game_sales)
+    compare(test_platform_sales, result2)
 
 result1 = {'NES', 'Wii'}
 result2 = ({
